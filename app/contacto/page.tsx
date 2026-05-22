@@ -17,16 +17,14 @@ export default function ContactoPage() {
     });
   };
 
-  // FUNCIÓN CONTROLADA: Envía los datos sin recargar la página
   const handleSubmit = async () => {
-    // Validación manual rápida antes de enviar
     if (!formData.nombre || !formData.correo || !formData.mensaje) {
       alert("Por favor, llena todos los campos obligatorios (Nombre, Correo y Mensaje).");
       return;
     }
 
     try {
-      const response = await fetch("https://formspree.io/f/mwvzlpan", {
+      const response = await fetch("https://formspree.io/f/mgoqyqlg", {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
@@ -37,7 +35,6 @@ export default function ContactoPage() {
 
       if (response.ok) {
         alert(`¡Gracias ${formData.nombre}! Tu mensaje ha sido enviado con éxito.`);
-        // Limpiamos el estado de React manualmente tras el éxito
         setFormData({ nombre: '', correo: '', telefono: '', mensaje: '' });
       } else {
         alert("Hubo un error al procesar el envío en el servidor de Formspree.");
@@ -48,15 +45,13 @@ export default function ContactoPage() {
     }
   };
 
-  // Mensaje predeterminado para WhatsApp
   const mensajeWhatsApp = encodeURIComponent(
     "Hola, me interesa obtener más información sobre las habitaciones y disponibilidad en el Hotel Villa de Rosas."
   );
-  // Número de prueba (puedes cambiarlo por el tuyo real después)
-  const linkWhatsApp = `https://wa.me/771 792 0632?text=${mensajeWhatsApp}`;
+  const linkWhatsApp = `https://wa.me/527717920632?text=${mensajeWhatsApp}`;
 
   return (
-    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen py-12 transition-all duration-700 ease-out animate-in fade-in slide-in-from-bottom-4">
+    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pt-28 pb-12 transition-all duration-700 ease-out animate-in fade-in slide-in-from-bottom-4">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Encabezado */}
@@ -64,7 +59,7 @@ export default function ContactoPage() {
           <span className="text-insignia font-bold tracking-widest text-xs uppercase block mb-2">Atención inmediata</span>
           <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white">Ponte en Contacto</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-4 max-w-xl mx-auto text-sm">
-            ¿Tienes dudas, solicitudes especiales o quieres cotizar para un evento? Estamos listos para ayudarte las 24 horas.
+            ¿Tienes dudas, solicitudes especiales o quieres cotizar para un evento? Estamos ready para ayudarte las 24 horas.
           </p>
         </div>
 
@@ -89,16 +84,18 @@ export default function ContactoPage() {
               <span className="ml-auto transform group-hover:translate-x-1 transition-transform">→</span>
             </a>
 
-            {/* Datos de ubicación y medios tradicionales */}
+            {/* Datos de ubicación reales */}
             <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-6">
               <div>
                 <h3 className="text-xs font-bold text-insignia uppercase tracking-widest mb-2">Ubicación</h3>
-                <p className="text-sm text-slate-700 dark:text-slate-300">Av. Principal #123, Colonia Centro, México.</p>
+                <p className="text-sm text-slate-700 dark:text-slate-300">
+                  Libramiento, Barrio lo Tlaxcalera, Huasca de Ocampo, Hgo., México.
+                </p>
               </div>
 
               <div className="border-t border-slate-100 dark:border-slate-800 pt-4">
-                <h3 className="text-xs font-bold text-insignia uppercase tracking-widest mb-2">Teléfonos</h3>
-                <p className="text-sm text-slate-700 dark:text-slate-300">+52 (461) 123-4567</p>
+                <h3 className="text-xs font-bold text-insignia uppercase tracking-widest mb-2">Teléfono</h3>
+                <p className="text-sm text-slate-700 dark:text-slate-300">+52 771 792 0632</p>
                 <p className="text-xs text-slate-400">Atención en recepción 24/7</p>
               </div>
 
@@ -111,7 +108,7 @@ export default function ContactoPage() {
 
           </div>
 
-          {/* Columna Derecha: Formulario Corregido Sin Recarga */}
+          {/* Columna Derecha: Formulario */}
           <div className="lg:col-span-7 bg-white dark:bg-slate-900 p-8 md:p-10 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
             <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Envíanos un Mensaje</h2>
             
@@ -149,7 +146,7 @@ export default function ContactoPage() {
                     name="telefono"
                     value={formData.telefono}
                     onChange={handleChange}
-                    placeholder="4611234567" 
+                    placeholder="7711234567" 
                     className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-insignia dark:focus:border-insignia focus:outline-none rounded-xl p-3 text-sm transition-colors"
                   />
                 </div>
@@ -168,7 +165,7 @@ export default function ContactoPage() {
                 />
               </div>
 
-              {/* Botón de Acción Controlado */}
+              {/* Botón de Acción */}
               <button 
                 type="button" 
                 onClick={handleSubmit}
