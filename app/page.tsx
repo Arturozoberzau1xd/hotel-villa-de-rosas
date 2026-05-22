@@ -1,5 +1,6 @@
 //import Image from 'next/image';
 import Link from 'next/link';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 // Datos de las habitaciones
 const HABITACIONES = [
@@ -55,7 +56,6 @@ export default function Home() {
             <a href="#habitaciones" className="bg-insignia hover:bg-opacity-90 text-slate-950 px-8 py-3 rounded-md font-bold transition-all shadow-md shadow-insignia/20">
               Ver Habitaciones
             </a>
-            {/* BOTÓN CORREGIDO: Ahora te desliza a la sección de historia */}
             <a href="#historia" className="border border-white hover:bg-white/10 text-white px-8 py-3 rounded-md font-medium transition-colors inline-block">
               Saber Más
             </a>
@@ -72,20 +72,19 @@ export default function Home() {
         </p>
       </section>
 
-      {/* 2.5 SECCIÓN DE HISTORIA (NUEVA - IDEAL PARA EL BOTÓN Y EL SEO) */}
+      {/* 2.5 SECCIÓN DE HISTORIA */}
       <section id="historia" className="bg-white dark:bg-slate-950 py-20 scroll-mt-20 border-t border-slate-100 dark:border-slate-900">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <span className="text-insignia font-bold tracking-widest text-xs uppercase block">Nuestra Tradición</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Hotel Villa de Rosas</h2>
             <p className="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
-              Nacido en el corazón de **Huasca de Ocampo**, el primer Pueblo Mágico de México, el Hotel Villa de Rosas combina la rica arquitectura tradicional de la región con las comodidades de la hotelería moderna.
+              Nacido en el corazón de **Huasca de Ocampo**, el primer Pueblo Mágico de México, el Hotel Villa de Rosas combina la rica arquitectura tradicional de la region con las comodidades de la hotelería moderna.
             </p>
             <p className="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
               Iniciamos como un pequeño refugio familiar enfocado en dar hospitalidad a los viajeros que buscaban explorar los Prismas Basálticos y los misteriosos bosques de Hidalgo. Hoy, nos enorgullece ofrecer un espacio de paz premium con atención de primer nivel, manteniendo siempre nuestra esencia cálida y atenta.
             </p>
           </div>
-          {/* Imagen conceptual de la historia del lugar */}
           <div className="relative h-80 md:h-[400px] rounded-2xl overflow-hidden shadow-xl">
             <img 
               src="/images/fondo.jpg" 
@@ -99,7 +98,6 @@ export default function Home() {
       {/* 3. SECCIÓN SECTOR DE HABITACIONES */}
       <section id="habitaciones" className="bg-slate-100 dark:bg-slate-900/50 py-24 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
-          
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>
               <span className="text-insignia font-bold tracking-wider text-xs uppercase block mb-2">Exclusividad</span>
@@ -110,12 +108,9 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Grid de Tarjetas */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {HABITACIONES.map((room) => (
               <div key={room.id} className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group border border-slate-100 dark:border-slate-800">
-                
-                {/* Contenedor de la Imagen */}
                 <div className="relative h-64 overflow-hidden">
                   <img 
                     src={room.imagen} 
@@ -127,7 +122,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Contenido de la Tarjeta */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-insignia transition-colors">
                     {room.nombre}
@@ -135,17 +129,14 @@ export default function Home() {
                   <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 mb-6">
                     {room.descripcion}
                   </p>
-                  
                   <Link href="/contacto" className="w-full border border-slate-200 dark:border-slate-700 hover:border-insignia dark:hover:border-insignia hover:bg-insignia hover:text-slate-950 text-slate-700 dark:text-slate-300 font-semibold py-2.5 rounded-xl text-sm transition-all text-center block">
                     Detalles e Información
                   </Link>
                 </div>
-
               </div>
             ))}
           </div>
 
-          {/* BOTÓN "VER MÁS" */}
           <div className="text-center">
             <Link 
               href="/habitaciones" 
@@ -283,6 +274,98 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 5. SECCIÓN DE UBICACIÓN (NUEVA E INTERACTIVA) */}
+      <section id="ubicacion" className="bg-slate-50 dark:bg-slate-900/40 py-24 border-t border-slate-100 dark:border-slate-900">
+        <div className="max-w-7xl mx-auto px-6">
+          
+          <div className="text-center mb-16">
+            <span className="text-insignia font-bold tracking-widest text-xs uppercase block mb-2">Planifica tu visita</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Ubicación Estratégica</h2>
+            <div className="w-12 h-1 bg-insignia mx-auto mt-4 rounded-full" />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-stretch">
+            
+            {/* Bloque de Información de Acceso */}
+            <div className="lg:col-span-1 flex flex-col justify-between gap-6">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white leading-tight">
+                  Encuéntranos en el corazón de Huasca
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                  Estamos ubicados sobre el libramiento principal, permitiéndote entrar y salir de forma rápida a los principales atractivos turísticos del pueblo sin atorarte en el tráfico del centro histórico.
+                </p>
+              </div>
+
+              {/* Lista de Datos Limpios */}
+              <div className="space-y-4 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-insignia/10 flex items-center justify-center text-insignia shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">Dirección</h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                      Libramiento, Barrio lo Tlaxcalera, Huasca de Ocampo, Hgo., México, 43516
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-insignia/10 flex items-center justify-center text-insignia shrink-0">
+                    <Clock className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">Check-In / Recepción</h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                      Abierto las 24 horas del día, los 365 días del año.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-insignia/10 flex items-center justify-center text-insignia shrink-0">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">Contacto Directo</h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                      +52 771 792 0632
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Enlace Directo a Google Maps App */}
+              <a 
+                href="https://maps.google.com/?q=Libramiento,+Barrio+lo+Tlaxcalera,+Huasca+de+Ocampo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold py-4 rounded-xl text-xs tracking-widest uppercase transition-all shadow-md text-center block"
+              >
+                Abrir en Google Maps
+              </a>
+            </div>
+
+            {/* Mapa de Google Maps embebido */}
+            <div className="lg:col-span-2 relative min-h-[350px] lg:min-h-full rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 bg-slate-200">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.1706691763133!2d-98.5714041!3d20.2104595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d10fc8326693a3%3A0x8849b79427b3fa99!2sLibramiento%2C%20Barrio%20lo%20Tlaxcalera%2C%2043516%20Huasca de Ocampo%2C%20Hgo.!5e0!3m2!1ses-419!2smx!4v1716380000000!5m2!1ses-419!2smx"
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 w-full h-full grayscale dark:invert-[0.9] dark:hue-rotate-180"
+              />
+            </div>
+
+          </div>
+
         </div>
       </section>
     </div>

@@ -11,7 +11,7 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   // Configuración de los datos del dueño
-  const telefonoHotel = "+527717920632"; // Sin espacios para el protocolo tel:
+  const telefonoHotel = "+527717920632"; 
   const mensajeWhatsapp = encodeURIComponent("¡Hola! Me interesa realizar una reservación en el Hotel Villa de Rosas. Vengo de su página web.");
 
   return (
@@ -46,15 +46,10 @@ export default function Navbar() {
           <Link href="/#reseñas" className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-insignia transition-colors">
             RESEÑAS
           </Link>
-          {/* BOTÓN CONTACTO ESCRITORIO: Abre WhatsApp directamente */}
-          <a 
-            href={`https://wa.me/${telefonoHotel}?text=${mensajeWhatsapp}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-insignia transition-colors"
-          >
-            CONTACTO
-          </a>
+          {/* NUEVO ENLACE: Ahora lleva al mapa interactivo de la página de inicio */}
+          <Link href="/#ubicacion" className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-insignia transition-colors">
+            UBICACIÓN
+          </Link>
         </div>
 
         {/* BOTÓN RESERVAR ESCRITORIO: Dispara llamada telefónica */}
@@ -94,7 +89,7 @@ export default function Navbar() {
         }`}
       />
 
-      {/* 2. MENÚ LATERAL PREMIUM */}
+      {/* 2. MENÚ LATERAL MÓVIL */}
       <div 
         style={{ 
           backgroundImage: `linear-gradient(to bottom, rgba(2, 6, 23, 0.65), rgba(2, 6, 23, 0.95)), url('/images/rosasusable.jpg')` 
@@ -116,23 +111,27 @@ export default function Navbar() {
           <Link href="/#reseñas" onClick={closeMenu} className="text-white hover:text-insignia transition-colors text-left">
             RESEÑAS
           </Link>
+          {/* UBICACIÓN MÓVIL: Cierra el menú y scrollea al mapa */}
+          <Link href="/#ubicacion" onClick={closeMenu} className="text-white hover:text-insignia transition-colors text-left">
+            UBICACIÓN
+          </Link>
           
-          {/* BOTÓN CONTACTO MÓVIL (WhatsApp) */}
+          {/* ENLACE DIRECTO A WHATSAPP: Una alternativa cómoda para chat */}
           <a 
             href={`https://wa.me/${telefonoHotel}?text=${mensajeWhatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeMenu} 
-            className="text-white hover:text-insignia transition-colors text-left"
+            className="text-white hover:text-insignia transition-colors text-left text-sm font-medium opacity-90 pt-2 flex items-center gap-1.5"
           >
-            CONTACTO
+            <span>💬</span> Mandar WhatsApp
           </a>
           
           {/* Botón Reservar Móvil (Llamada Directa) */}
           <a 
             href={`tel:${telefonoHotel}`}
             onClick={closeMenu} 
-            className="mt-6 bg-insignia text-slate-950 px-8 py-3 rounded-xl text-xs font-black tracking-widest shadow-lg shadow-insignia/20 inline-block mr-auto text-center"
+            className="mt-4 bg-insignia text-slate-950 px-8 py-3 rounded-xl text-xs font-black tracking-widest shadow-lg shadow-insignia/20 inline-block mr-auto text-center"
           >
             LLAMAR Y RESERVAR
           </a>
