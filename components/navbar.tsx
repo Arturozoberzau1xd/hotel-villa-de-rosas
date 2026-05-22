@@ -10,6 +10,10 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  // Configuración de los datos del dueño
+  const telefonoHotel = "+527717920632"; // Sin espacios para el protocolo tel:
+  const mensajeWhatsapp = encodeURIComponent("¡Hola! Me interesa realizar una reservación en el Hotel Villa de Rosas. Vengo de su página web.");
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-gray-100 dark:border-slate-900 backdrop-saturate-150">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -23,11 +27,10 @@ export default function Navbar() {
             height={48} 
             className="object-contain"
           />
-          <span className="text-2xl font-bold tracking-widest text-slate-950 dark:text-white">
+          <span className="text-2xl font-bold tracking-widest text-slate-950 dark:text-white leading-tight">
             Villa de<br/>ROSAS
           </span>
         </Link>
-
 
         {/* MENÚ ESCRITORIO */}
         <div className="hidden md:flex items-center gap-8">
@@ -43,16 +46,25 @@ export default function Navbar() {
           <Link href="/#reseñas" className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-insignia transition-colors">
             RESEÑAS
           </Link>
-          <Link href="/contacto" className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-insignia transition-colors">
+          {/* BOTÓN CONTACTO ESCRITORIO: Abre WhatsApp directamente */}
+          <a 
+            href={`https://wa.me/${telefonoHotel}?text=${mensajeWhatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-insignia transition-colors"
+          >
             CONTACTO
-          </Link>
+          </a>
         </div>
 
-        {/* BOTÓN RESERVAR ESCRITORIO */}
+        {/* BOTÓN RESERVAR ESCRITORIO: Dispara llamada telefónica */}
         <div className="hidden md:block">
-          <Link href="/contacto" className="bg-insignia text-slate-950 px-6 py-2.5 rounded-full text-xs font-bold tracking-widest hover:bg-opacity-90 transition-all shadow-md shadow-insignia/20 block">
+          <a 
+            href={`tel:${telefonoHotel}`}
+            className="bg-insignia text-slate-950 px-6 py-2.5 rounded-full text-xs font-bold tracking-widest hover:bg-opacity-90 transition-all shadow-md shadow-insignia/20 block text-center"
+          >
             RESERVAR
-          </Link>
+          </a>
         </div>
 
         {/* BOTÓN HAMBURGUESA MÓVIL */}
@@ -74,7 +86,7 @@ export default function Navbar() {
 
       </div>
 
-      {/* 1. OVERLAY OSCURO Y DESENFOCADO (Fondo de la web detrás del menú) */}
+      {/* 1. OVERLAY OSCURO Y DESENFOCADO */}
       <div 
         onClick={closeMenu}
         className={`fixed inset-0 bg-slate-950/40 backdrop-blur-sm transition-opacity duration-500 md:hidden z-30 ${
@@ -82,7 +94,7 @@ export default function Navbar() {
         }`}
       />
 
-      {/* 2. MENÚ LATERAL PREMIUM (Se desliza desde la derecha y tiene fondo de rosas) */}
+      {/* 2. MENÚ LATERAL PREMIUM */}
       <div 
         style={{ 
           backgroundImage: `linear-gradient(to bottom, rgba(2, 6, 23, 0.65), rgba(2, 6, 23, 0.95)), url('/images/rosasusable.jpg')` 
@@ -104,18 +116,26 @@ export default function Navbar() {
           <Link href="/#reseñas" onClick={closeMenu} className="text-white hover:text-insignia transition-colors text-left">
             RESEÑAS
           </Link>
-          <Link href="/contacto" onClick={closeMenu} className="text-white hover:text-insignia transition-colors text-left">
-            CONTACTO
-          </Link>
           
-          {/* Botón Reservar Móvil */}
-          <Link 
-            href="/contacto" 
+          {/* BOTÓN CONTACTO MÓVIL (WhatsApp) */}
+          <a 
+            href={`https://wa.me/${telefonoHotel}?text=${mensajeWhatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={closeMenu} 
-            className="mt-6 bg-insignia text-slate-950 px-8 py-3 rounded-xl text-xs font-black tracking-widest shadow-lg shadow-insignia/20 inline-block mr-auto"
+            className="text-white hover:text-insignia transition-colors text-left"
           >
-            RESERVAR YA
-          </Link>
+            CONTACTO
+          </a>
+          
+          {/* Botón Reservar Móvil (Llamada Directa) */}
+          <a 
+            href={`tel:${telefonoHotel}`}
+            onClick={closeMenu} 
+            className="mt-6 bg-insignia text-slate-950 px-8 py-3 rounded-xl text-xs font-black tracking-widest shadow-lg shadow-insignia/20 inline-block mr-auto text-center"
+          >
+            LLAMAR Y RESERVAR
+          </a>
         </div>
       </div>
 
