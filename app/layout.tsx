@@ -6,6 +6,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Hotel Rosas | Sitio Oficial",
   description: "Disfruta de una estancia inolvidable en nuestro hotel de lujo.",
+  verification: {
+    google: 'yj1gyxaZ1DSYC3Wld6TlPTJkWqUB5yeDY8rvQxuPgXg',
+  },
 };
 
 export default function RootLayout({
