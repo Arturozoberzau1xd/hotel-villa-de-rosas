@@ -141,7 +141,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Nuestras Habitaciones</h2>
             </div>
             <p className="text-slate-500 dark:text-slate-400 max-w-md mt-4 md:mt-0">
-              Cada habitación ha sido decorada al detalle para garantizar una atmósfera de paz, privacidad y lujo tecnológico.
+              Cada habitación ha sido decorada al ddetalle para garantizar una atmósfera de paz, privacidad y lujo tecnológico.
             </p>
           </div>
 
