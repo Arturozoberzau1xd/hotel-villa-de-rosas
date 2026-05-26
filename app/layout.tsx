@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
-      <body className="antialiased bg-slate-50 text-slate-950 flex flex-col min-h-screen">
+    <html lang="es" className="dark scroll-smooth">
+      <body className="antialiased bg-slate-950 text-slate-100 flex flex-col min-h-screen">
         {/* Navbar Fijo */}
         <Navbar />
         
