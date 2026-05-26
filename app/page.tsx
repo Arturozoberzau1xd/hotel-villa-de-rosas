@@ -164,7 +164,7 @@ export default function Home() {
                     <button 
                       type="button"
                       onClick={() => cambiarImagen(room.id, 'prev', room.imagenes.length)}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 bg-slate-950/60 hover:bg-insignia hover:text-slate-950 text-white p-1.5 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all z-20"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 bg-slate-950/70 hover:bg-insignia hover:text-slate-950 text-white p-2 rounded-full backdrop-blur-sm opacity-100 visible transition-all z-30 shadow-lg active:scale-95 touch-manipulation"
                       aria-label="Anterior imagen"
                     >
                       <ChevronLeft className="w-5 h-5" />
@@ -174,7 +174,7 @@ export default function Home() {
                     <button 
                       type="button"
                       onClick={() => cambiarImagen(room.id, 'next', room.imagenes.length)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-950/60 hover:bg-insignia hover:text-slate-950 text-white p-1.5 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all z-20"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-950/70 hover:bg-insignia hover:text-slate-950 text-white p-2 rounded-full backdrop-blur-sm opacity-100 visible transition-all z-30 shadow-lg active:scale-95 touch-manipulation"
                       aria-label="Siguiente imagen"
                     >
                       <ChevronRight className="w-5 h-5" />
@@ -429,7 +429,7 @@ export default function Home() {
 
             <div className="lg:col-span-2 relative min-h-[350px] lg:min-h-full rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.114751412853!2d-98.57017772476315!3d20.212711881245037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d10fe6b1b74ec1%3A0x6b245eef2ebc7ee8!2sHotel%20Villa%20de%20Rosas!5e0!3m2!1ses-419!2smx!4v1716380000000!5m2!1ses-419!2smx"
+                src="https://www.google.com/maps/embed?pb=!4v1779759509422!6m8!1m7!1shfdL40ruJzFyxYs7E9XVpA!2m2!1d20.21691833135399!2d-98.57858499646636!3f175.29353550299643!4f-8.835292854374273!5f0.7820865974627469"
                 style={{ border: 0 }}
                 allowFullScreen={true}
                 loading="lazy"
