@@ -11,7 +11,7 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   // Configuración de los datos del hotel
-  const telefonoHotel = "+527717920632"; 
+  const telefonoHotel = "+527711181462"; 
   const mensajeWhatsapp = encodeURIComponent("¡Hola! Me interesa realizar una reservación en el Hotel Villa de Rosas. Vengo de su página web.");
 
   return (
