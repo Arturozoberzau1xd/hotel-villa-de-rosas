@@ -1,10 +1,28 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { MapPin, Phone, Mail, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// 1. Configuración de datos de habitaciones con múltiples imágenes
+// Imágenes destinadas al fondo infinito del Hero (Lobby)
+const IMAGENES_LOBBY = [
+  "/images/principalusable.jpg",
+  "/images/interior2back.jpg", 
+  "/images/interiorback.jpg",
+  "/images/nocheback.jpg",
+  "/images/se1.jpg"
+];
+
+// Imágenes destinadas al carrusel automático de la sección de Historia
+const IMAGENES_HISTORIA = [
+  "/images/fondo.jpg",
+  "/images/pajaro.jpg", // Agrega aquí las rutas de tus imágenes para la historia
+   "/images/rosas.jpg",
+  "/images/casa.jpg",
+  "/images/rosa.jpg"
+];
+
+// Configuración de datos de habitaciones con múltiples imágenes
 const HABITACIONES = [
   {
     id: 1,
@@ -42,12 +60,28 @@ const HABITACIONES = [
 ];
 
 export default function Home() {
-  // 2. Estado para controlar el carrusel de imágenes por habitación
+  // Estado para controlar el carrusel de imágenes por habitación
   const [imagenesActivas, setImagenesActivas] = useState<{ [key: number]: number }>({
     1: 0,
     2: 0,
     3: 0
   });
+
+  // Estado para la imagen activa del Lobby (Hero) y de la Historia
+  const [lobbyIndex, setLobbyIndex] = useState(0);
+  const [historiaIndex, setHistoriaIndex] = useState(0);
+
+  // Efecto óptimo para los carruseles automáticos e infinitos (Lobby e Historia)
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      // Incrementa el índice del Lobby
+      setLobbyIndex((prevIndex) => (prevIndex + 1) % IMAGENES_LOBBY.length);
+      // Incrementa el índice de la Historia
+      setHistoriaIndex((prevIndex) => (prevIndex + 1) % IMAGENES_HISTORIA.length);
+    }, 5000); // Cambia de imagen cada 5 segundos simultáneamente
+
+    return () => clearInterval(intervalo); // Limpieza de memoria al desmontar
+  }, []);
 
   const cambiarImagen = (roomId: number, direccion: 'prev' | 'next', totalImagenes: number) => {
     setImagenesActivas((prev) => {
@@ -67,16 +101,23 @@ export default function Home() {
   return (
     <div className="w-full">
       
-      {/* 1. SECCIÓN HERO */}
+      {/* 1. SECCIÓN HERO CON CARRUSEL OPTIMIZADO */}
       <section className="relative h-[calc(100vh-80px)] flex items-center justify-center bg-slate-950 text-white overflow-hidden">
+        {/* Capa de superposición para legibilidad del texto */}
         <div className="absolute inset-0 bg-black/50 z-10" />
         
+        {/* Contenedor de imágenes acelerado por hardware */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/principalusable.jpg" 
-            alt="Lobby Hotel Villa de Rosas en Huasca de Ocampo" 
-            className="w-full h-full object-cover brightness-75"
-          />
+          {IMAGENES_LOBBY.map((imagen, index) => (
+            <img 
+              key={imagen}
+              src={imagen} 
+              alt={`Lobby Hotel Villa de Rosas en Huasca de Ocampo - Vista ${index + 1}`} 
+              className={`absolute inset-0 w-full h-full object-cover brightness-75 transition-opacity duration-1000 ease-in-out ${
+                index === lobbyIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
         </div>
 
         <div className="relative z-20 text-center max-w-3xl mx-auto px-6">
@@ -109,7 +150,7 @@ export default function Home() {
         </p>
       </section>
 
-      {/* 2.5 SECCIÓN DE HISTORIA */}
+      {/* 2.5 SECCIÓN DE HISTORIA CON CARRUSEL OPTIMIZADO */}
       <section id="historia" className="bg-white dark:bg-slate-950 py-20 scroll-mt-20 border-t border-slate-100 dark:border-slate-900">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
@@ -122,12 +163,19 @@ export default function Home() {
               Iniciamos como un pequeño refugio familiar enfocado en dar hospitalidad a los viajeros que buscaban explorar los Prismas Basálticos y los misteriosos bosques de Hidalgo. Hoy, nos enorgullece ofrecer un espacio de paz premium con atención de primer nivel, manteniendo siempre nuestra esencia cálida y atenta.
             </p>
           </div>
-          <div className="relative h-80 md:h-[400px] rounded-2xl overflow-hidden shadow-xl">
-            <img 
-              src="/images/fondo.jpg" 
-              alt="Historia y entorno de Huasca de Ocampo" 
-              className="w-full h-full object-cover"
-            />
+          
+          {/* Contenedor de la imagen transformado en Carrusel Infinito */}
+          <div className="relative h-80 md:h-[400px] rounded-2xl overflow-hidden shadow-xl bg-slate-950">
+            {IMAGENES_HISTORIA.map((imagen, index) => (
+              <img 
+                key={imagen}
+                src={imagen} 
+                alt={`Historia y entorno de Huasca de Ocampo - Vista ${index + 1}`} 
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                  index === historiaIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -141,7 +189,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Nuestras Habitaciones</h2>
             </div>
             <p className="text-slate-500 dark:text-slate-400 max-w-md mt-4 md:mt-0">
-              Cada habitación ha sido decorada al ddetalle para garantizar una atmósfera de paz, privacidad y lujo tecnológico.
+              Cada habitación ha sido decorada al detalle para garantizar una atmósfera de paz, privacidad y lujo tecnológico.
             </p>
           </div>
 
@@ -204,7 +252,6 @@ export default function Home() {
                     <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 mb-6">
                       {room.descripcion}
                     </p>
-                    {/* Enlace corregido a tu nueva vista de contacto para cotizar/reservar */}
                     <Link href="/contacto" className="w-full border border-slate-200 dark:border-slate-700 hover:border-insignia dark:hover:border-insignia hover:bg-insignia hover:text-slate-950 text-slate-700 dark:text-slate-300 font-semibold py-2.5 rounded-xl text-sm transition-all text-center block">
                       Detalles e Información
                     </Link>
@@ -287,7 +334,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. SECCIÓN DE TESTIMONIOS (CON ESCAPE DE LITERALS PARA ESLINT) */}
+      {/* 4. SECCIÓN DE TESTIMONIOS */}
       <section id="reseñas" className="bg-white dark:bg-slate-950 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -297,8 +344,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Testimonio 1 - Carlos */}
             <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 flex flex-col justify-between">
               <div>
                 <div className="text-amber-400 text-lg mb-4">★★★★★</div>
@@ -317,7 +362,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Testimonio 2 - Mariana */}
             <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 flex flex-col justify-between">
               <div>
                 <div className="text-amber-400 text-lg mb-4">★★★★★</div>
@@ -336,7 +380,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Testimonio 3 - Juan Luis */}
             <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 flex flex-col justify-between">
               <div>
                 <div className="text-amber-400 text-lg mb-4">★★★★★</div>
@@ -354,7 +397,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -364,7 +406,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <span className="text-insignia font-bold tracking-widest text-xs uppercase block mb-2">Planifica tu visita</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Ubicación Estratégica</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Ubicación Strategica</h2>
             <div className="w-12 h-1 bg-insignia mx-auto mt-4 rounded-full" />
           </div>
 
