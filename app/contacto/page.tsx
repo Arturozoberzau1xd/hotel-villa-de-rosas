@@ -101,8 +101,7 @@ export default function ContactoPage() {
 
               <div className="border-t border-slate-100 dark:border-slate-800 pt-4">
                 <h3 className="text-xs font-bold text-insignia uppercase tracking-widest mb-2">Correos Electrónicos</h3>
-                <p className="text-sm text-slate-700 dark:text-slate-300">reservaciones@hotelrosas.com</p>
-                <p className="text-sm text-slate-700 dark:text-slate-300">informes@hotelrosas.com</p>
+                <p className="text-sm text-slate-700 dark:text-slate-300">juliovargas.jv20@gmail.comcom</p>
               </div>
             </div>
 
