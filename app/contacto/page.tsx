@@ -48,7 +48,7 @@ export default function ContactoPage() {
   const mensajeWhatsApp = encodeURIComponent(
     "Hola, me interesa obtener más información sobre las habitaciones y disponibilidad en el Hotel Villa de Rosas."
   );
-  const linkWhatsApp = `https://wa.me/527717920632?text=${mensajeWhatsApp}`;
+  const linkWhatsApp = `https://wa.me/527711181462?text=${mensajeWhatsApp}`;
 
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pt-28 pb-12 transition-all duration-700 ease-out animate-in fade-in slide-in-from-bottom-4">
