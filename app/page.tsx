@@ -406,7 +406,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <span className="text-insignia font-bold tracking-widest text-xs uppercase block mb-2">Planifica tu visita</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Ubicación Strategica</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Ubicación Estrategica</h2>
             <div className="w-12 h-1 bg-insignia mx-auto mt-4 rounded-full" />
           </div>
 
